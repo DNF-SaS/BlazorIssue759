@@ -1,0 +1,14 @@
+﻿@*Only for Debug-Output to Console*@
+@inherits ComponentBase
+
+<tr>
+    <td>@this.WeatherForecast.Date.ToShortDateString()</td>
+    <td>@this.WeatherForecast.TemperatureC</td>
+    <td>@this.WeatherForecast.TemperatureF</td>
+    <td>@this.WeatherForecast.Summary</td>
+</tr>
+
+@functions
+{
+    [Parameter] private WeatherForecast WeatherForecast { get; set; }
+}

@@ -1,0 +1,43 @@
+﻿@page "/fetchdata"
+@inject HttpClient Http
+
+@inherits ComponentBase
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts.Take(1))
+            {
+                <ForecastRow WeatherForecast="@forecast" />
+            }
+        </tbody>
+    </table>
+}
+
+@functions {
+    WeatherForecast[] forecasts;
+
+    protected override async Task OnInitAsync()
+    {
+        forecasts = (await Http.GetJsonAsync<WeatherForecast[]>("/sample-data/weather.json")).Take(1).ToArray();
+    }
+
+
+}
