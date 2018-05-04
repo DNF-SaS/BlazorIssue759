@@ -45,7 +45,6 @@ namespace WebApplication12
 			if ( this.debugLog )
 				Program.Log(this.prefix);
 
-			this.isChanged = false;
 			base.OnAfterRender();
 		}
 
